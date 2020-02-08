@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  #labels:
+  #app: mysql
+spec:
+  #replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - mountPath: "/var/lib/mysql"
+              #subPath: "mysql"
+              name: mysql
+          env:
+            - name: MYSQL_USER
+              value: api
+            - name: MYSQL_DATABASE
+              value: bitelio
+            - name: MYSQL_PASSWORD
+              value: password
+            - name: MYSQL_ALLOW_EMPTY_PASSWORD
+              value: "1"
+      volumes:
+        - name: mysql
+          persistentVolumeClaim:
+            claimName: mysql

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api
+data:
+  BTL_STORE: 'mysql://api:password@mysql/bitelio'
+  BTL_CACHE: redis
