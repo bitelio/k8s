@@ -1,0 +1,15 @@
+name: CI
+
+on:
+  - push
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Kubeval
+        uses: stefanprodan/kube-tools@v1
+        with:
+          kubectl: 1.17.0
+          command: kubeval --strict */*yaml
