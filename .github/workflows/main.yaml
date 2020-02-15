@@ -12,4 +12,4 @@ jobs:
         uses: stefanprodan/kube-tools@v1
         with:
           kubectl: 1.17.0
-          command: kubeval --strict */*yaml
+          command: kubeval --strict --ignore-missing-schemas -d monitoring,redis,mysql,api
